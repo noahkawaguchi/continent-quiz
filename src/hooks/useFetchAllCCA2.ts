@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { fetchAPIData } from "../services/api";
+import axios from "axios";
+
+const URL: string = 'https://restcountries.com/v3.1/all?fields=cca2';
 
 export const useFetchAllCCA2 = () => {
   const [cca2data, setData] = useState<any>(null);
@@ -9,8 +11,8 @@ export const useFetchAllCCA2 = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const rawData = await fetchAPIData('all?fields=cca2');
-        const processedData = Object.values(rawData).map((item: any) => item.cca2);
+        const rawData = await axios.get(URL);
+        const processedData = Object.values(rawData.data).map((item: any) => item.cca2);
         setData(processedData);
       } catch (err: any) {
         setError(err instanceof Error ? err.message : "Unknown error");

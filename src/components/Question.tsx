@@ -8,13 +8,12 @@ interface QuestionProps {
 const Question: React.FC<QuestionProps> = ({ cca2 }) => {
   const { data, loading, error } = useProcessedData(cca2);
 
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
     <>
-      {/* <pre style={{textAlign: 'left'}}>{JSON.stringify(cca2data, null, 2)}</pre> */}
+      <h2>{data?.commonName}</h2>
       <pre style={{textAlign: 'left'}}>{JSON.stringify(data, null, 2)}</pre>
     </>
   );  
