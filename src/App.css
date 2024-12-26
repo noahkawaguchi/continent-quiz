@@ -1,1 +1,26 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
 
+main > * {
+  margin: auto;
+}
+
+.question {
+  border: 1px solid white;
+  padding: 10px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons button {
+  background-color: var(--dark-background);
+  color: var(--light-text);
+  padding: 6px;
+  margin: 3px 1px;
+  font-size: 1rem;
+}

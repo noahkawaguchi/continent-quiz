@@ -4,7 +4,7 @@ import axios from "axios";
 const URL: string = 'https://restcountries.com/v3.1/all?fields=cca2';
 
 export const useFetchAllCCA2 = () => {
-  const [cca2data, setData] = useState<any>(null);
+  const [cca2data, setData] = useState<Array<string> | null>(null);
   const [cca2loading, setLoading] = useState<boolean>(true);
   const [cca2error, setError] = useState<string | null>(null);
 

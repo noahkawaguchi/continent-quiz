@@ -12,10 +12,20 @@ const Question: React.FC<QuestionProps> = ({ cca2 }) => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <>
-      <h2>{data?.commonName}</h2>
+    <div className="question">
+      <p>Where is...</p>
+      <h3>{data?.commonName} {data?.flagEmoji}</h3>
+      <div className="buttons">
+        <button>Africa</button>
+        <button>Antarctica</button>
+        <button>Asia</button>
+        <button>Europe</button>
+        <button>North America/Caribbean</button>
+        <button>Australia/Oceania</button>
+        <button>South America</button>
+      </div>
       <pre style={{textAlign: 'left'}}>{JSON.stringify(data, null, 2)}</pre>
-    </>
+    </div>
   );  
 }
 
