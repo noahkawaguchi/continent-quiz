@@ -18,7 +18,7 @@ main > * {
 }
 
 .buttons button {
-  background-color: var(--dark-background);
+  background-color: darkslategray;
   color: var(--light-text);
   padding: 6px;
   margin: 3px 1px;

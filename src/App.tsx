@@ -7,19 +7,23 @@ import { Utils } from './utils/Utils';
 
 function App() {
   const [score, setScore] = useState(0);
+  const [lives, setLives] = useState(5);
 
   useEffect(() => {
-    console.log(score)
-  }, [score]);
+    console.log(`Score: ${score}`);
+    console.log(`Lives: ${lives}`);
+  }, [score, lives]);
 
   const correctAnswer = (correct: boolean) => {
     console.log(correct);
     if (correct) {
       setScore(prevScore => prevScore + 1);
+    } else {
+      setLives(prevLives => prevLives - 1);
     }
   }
   
-  // Get all valid CCA2 codes only once
+  // Get all valid CCA2 codes with a one-time API call
   const { cca2data, cca2loading, cca2error } = useFetchAllCCA2();
   if (cca2loading) return <p>Loading...</p>;
   if (cca2error) return <p>Error: {cca2error}</p>;
