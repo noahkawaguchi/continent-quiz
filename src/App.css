@@ -1,6 +1,17 @@
+header {
+  width: min-content;
+  margin: auto;
+}
+
+header > h1 {
+  width: max-content;
+}
+
 main {
   display: flex;
   flex-direction: column;
+  width: max-content;
+  margin: auto;
 }
 
 main > * {

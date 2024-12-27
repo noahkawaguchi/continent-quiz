@@ -7,7 +7,7 @@ interface StatsProps {
   gameOver: boolean,
 }
 
-const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }) => {
+const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }): React.JSX.Element => {
   const [highScore, setHighScore] = useState(score);
 
   // Load any previous high score from local storage once when the component mounts
@@ -23,7 +23,7 @@ const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }) => {
       setHighScore(score);
       localStorage.setItem('storedHighScore', score.toString());
     }
-  }, [score])
+  }, [score]);
 
   return (
     <>
@@ -31,6 +31,6 @@ const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }) => {
       <h4>High Score: {highScore}</h4>
     </>
   );
-}
+};
 
 export default Stats

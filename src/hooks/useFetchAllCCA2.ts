@@ -24,4 +24,4 @@ export const useFetchAllCCA2 = () => {
   }, []); // Use [] so this only runs once
 
   return { cca2data, cca2loading, cca2error };
-}
+};

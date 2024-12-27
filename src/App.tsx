@@ -1,5 +1,5 @@
-import './App.css'
-import { useState, useEffect } from 'react';
+import './App.css';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Question from './components/Question';
 import Stats from './components/Stats';
@@ -7,7 +7,7 @@ import Endgame from './components/Endgame';
 import { useFetchAllCCA2 } from "./hooks/useFetchAllCCA2";
 import { Utils } from './utils/Utils';
 
-function App() {
+const App: React.FC = (): React.JSX.Element => {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(5);
   const [gameOver, setGameOver] = useState(false);
@@ -19,7 +19,6 @@ function App() {
   }, [lives]);
 
   const correctAnswer = (correct: boolean) => {
-    console.log(correct);
     if (correct) {
       setScore(prevScore => prevScore + 1);
     } else {
@@ -48,7 +47,7 @@ function App() {
         <Stats score={score} lives={lives} gameOver={gameOver} />
       </main>
     </>
-  )
-}
+  );
+};
 
 export default App

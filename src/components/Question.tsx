@@ -17,20 +17,24 @@ enum Continents {
   South_America = 'South America',
 }
 
-const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }) => {
-  const [questionResult, setQuestionResult] = useState('');
+const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }): React.JSX.Element => {
+  const [questionResult, setQuestionResult] = useState(<></>);
 
   const { data, loading, error } = useProcessedData(cca2);
 
   const gradeAnswer = (answer: Continents): void => {
     if (data?.continents.includes(answer)) {
-      setQuestionResult('Correct!');
+      setQuestionResult(<span style={{color: "limegreen"}}>Correct!</span>);
       correctAnswer(true);
       return;
     }
-    setQuestionResult(`Incorrect. Correct answers for ${data?.commonName} include: ${data?.continents}.`)
+    setQuestionResult(
+      <span style={{color: "crimson"}}>
+        Incorrect. Correct answers for {data?.commonName} include: {data?.continents}.
+      </span>
+    );
     correctAnswer(false);
-  }
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -47,8 +51,8 @@ const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }) => {
           </div>
           <div className="buttons-inner">
             <button onClick={() => gradeAnswer(Continents.Europe)}>Europe</button>
-            <button onClick={() => gradeAnswer(Continents.Africa)}>Africa</button>
             <button onClick={() => gradeAnswer(Continents.Asia)}>Asia</button>
+            <button onClick={() => gradeAnswer(Continents.Africa)}>Africa</button>
             <button onClick={() => gradeAnswer(Continents.Oceania)}>Oceania</button>
           </div>
         </div>
@@ -57,9 +61,8 @@ const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }) => {
         </label>
         <p>{questionResult}</p>
       </div>
-      {/* <pre style={{textAlign: 'left'}}>{JSON.stringify(data, null, 2)}</pre> */}
     </div>
   );  
-}
+};
 
 export default Question;
