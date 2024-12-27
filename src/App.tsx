@@ -2,6 +2,7 @@ import './App.css'
 import { useState, useEffect } from 'react';
 import Header from './components/Header'
 import Question from './components/Question'
+import Stats from './components/Stats';
 import { useFetchAllCCA2 } from "./hooks/useFetchAllCCA2";
 import { Utils } from './utils/Utils';
 
@@ -34,6 +35,7 @@ function App() {
       <header><Header /></header>
       <main>
         <Question cca2={randomCCA2} correctAnswer={correctAnswer} />
+        <Stats score={score} lives={lives}/>
       </main>
     </>
   )

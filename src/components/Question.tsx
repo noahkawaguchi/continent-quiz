@@ -49,7 +49,7 @@ const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }) => {
         <button onClick={() => {gradeAnswer(Continents.South_America)}}>South America</button>
       </div>
       <p>{questionResult}</p>
-      <pre style={{textAlign: 'left'}}>{JSON.stringify(data, null, 2)}</pre>
+      {/* <pre style={{textAlign: 'left'}}>{JSON.stringify(data, null, 2)}</pre> */}
     </div>
   );  
 }
