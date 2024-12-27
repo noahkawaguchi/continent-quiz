@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useProcessedData } from "../hooks/useProcessedData";
 
 interface QuestionProps {
@@ -17,13 +18,17 @@ enum Continents {
 }
 
 const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }) => {
+  const [questionResult, setQuestionResult] = useState('');
+
   const { data, loading, error } = useProcessedData(cca2);
 
   const gradeAnswer = (answer: Continents): void => {
     if (data?.continents.includes(answer)) {
+      setQuestionResult('Correct!');
       correctAnswer(true);
       return;
     }
+    setQuestionResult(`Incorrect. Correct answers include: ${data?.continents}.`)
     correctAnswer(false);
   }
 
@@ -43,6 +48,7 @@ const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }) => {
         <button onClick={() => {gradeAnswer(Continents.Oceania)}}>Australia/Oceania</button>
         <button onClick={() => {gradeAnswer(Continents.South_America)}}>South America</button>
       </div>
+      <p>{questionResult}</p>
       <pre style={{textAlign: 'left'}}>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );  
