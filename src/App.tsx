@@ -1,9 +1,9 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Question from './components/Question';
-import Stats from './components/Stats';
-import Endgame from './components/Endgame';
+import Header from './components/Header/Header';
+import Question from './components/Question/Question';
+import Stats from './components/Stats/Stats';
+import Endgame from './components/Endgame/Endgame';
 import { useAllValidCCA2 } from "./hooks/useAllValidCCA2";
 import { Utils } from './utils/Utils';
 

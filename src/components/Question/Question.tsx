@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useProcessedRegionData } from "../hooks/useProcessedRegionData";
+import { useProcessedRegionData } from "../../hooks/useProcessedRegionData";
 
 interface QuestionProps {
   cca2: string,
