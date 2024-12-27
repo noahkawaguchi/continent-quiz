@@ -1,7 +1,8 @@
 import './App.css'
 import { useState, useEffect } from 'react';
-import Header from './components/Header'
-import Question from './components/Question'
+import Header from './components/Header';
+import Question from './components/Question';
+import Stats from './components/Stats';
 import Endgame from './components/Endgame';
 import { useFetchAllCCA2 } from "./hooks/useFetchAllCCA2";
 import { Utils } from './utils/Utils';
@@ -10,11 +11,6 @@ function App() {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(5);
   const [gameOver, setGameOver] = useState(false);
-
-  useEffect(() => {
-    console.log(`Score: ${score}`);
-    console.log(`Lives: ${lives}`);
-  }, [score, lives]);
 
   useEffect(() => {
     if (lives <= 0) {
@@ -49,7 +45,7 @@ function App() {
       <main>
         {!gameOver && <Question cca2={randomCCA2} correctAnswer={correctAnswer} />}
         {gameOver && <Endgame newGame={newGame} />}
-        <h4>Score: {score} {!gameOver && `| Lives: ${lives}`}</h4>
+        <Stats score={score} lives={lives} gameOver={gameOver} />
       </main>
     </>
   )
