@@ -3,17 +3,25 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header'
 import Question from './components/Question'
 import Stats from './components/Stats';
+import Endgame from './components/Endgame';
 import { useFetchAllCCA2 } from "./hooks/useFetchAllCCA2";
 import { Utils } from './utils/Utils';
 
 function App() {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(5);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     console.log(`Score: ${score}`);
     console.log(`Lives: ${lives}`);
   }, [score, lives]);
+
+  useEffect(() => {
+    if (lives <= 0) {
+      setGameOver(true);
+    }
+  }, [lives]);
 
   const correctAnswer = (correct: boolean) => {
     console.log(correct);
@@ -22,7 +30,13 @@ function App() {
     } else {
       setLives(prevLives => prevLives - 1);
     }
-  }
+  };
+
+  const newGame = () => {
+    setScore(0);
+    setLives(5);
+    setGameOver(false);
+  };
   
   // Get all valid CCA2 codes with a one-time API call
   const { cca2data, cca2loading, cca2error } = useFetchAllCCA2();
@@ -34,8 +48,9 @@ function App() {
     <>
       <header><Header /></header>
       <main>
-        <Question cca2={randomCCA2} correctAnswer={correctAnswer} />
-        <Stats score={score} lives={lives}/>
+        {!gameOver && <Question cca2={randomCCA2} correctAnswer={correctAnswer} />}
+        {gameOver && <Endgame newGame={newGame} />}
+        <Stats score={score} lives={lives} />
       </main>
     </>
   )

@@ -8,8 +8,7 @@ main > * {
 }
 
 .question {
-  border: 1px solid white;
-  padding: 10px;
+  margin: auto;
 }
 
 .buttons {
@@ -17,7 +16,7 @@ main > * {
   flex-direction: column;
 }
 
-.buttons button {
+button {
   background-color: darkslategray;
   color: var(--light-text);
   padding: 6px;
