@@ -20,18 +20,25 @@ const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }): React.JSX.Elem
   // Load any previous high score from local storage once when the component mounts
   useEffect(() => {
     const storedString = localStorage.getItem('storedHighScore');
-    const storedNumber = storedString && !isNaN(Number(storedString)) ? parseInt(storedString) : 0;
+    const storedNumber = storedString && !isNaN(Number(storedString))
+                           ? parseInt(storedString)
+                           : score;
     setHighScore(storedNumber);
   }, []);
 
-  // Update the high score in the UI and in local storage if the user scores higher
+  // Update the high score in the UI and in local storage if 
+  // the user's score is higher than the stored number.
   useEffect(() => {
+    console.log('checking for highScore update!');
     if (score > highScore) {
       setHighScore(score);
       localStorage.setItem('storedHighScore', score.toString());
     }
-  }, [score]);
+  }, [score, highScore]);
+  // Listening for highScore here causes double checks but is necessary so the 
+  // component will update local storage when it renders if necessary.
 
+  
   return (
     <>
       <h4>Score: {score} {!gameOver && `| Lives: ${lives}`}</h4>
