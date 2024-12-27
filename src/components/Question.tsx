@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useProcessedData } from "../hooks/useProcessedData";
+import { useProcessedRegionData } from "../hooks/useProcessedRegionData";
 
 interface QuestionProps {
   cca2: string,
@@ -17,10 +17,16 @@ enum Continents {
   South_America = 'South America',
 }
 
+/**
+ * Displays a question asking for a country or region's continent and grades the answer.
+ * @param cca2 - Two-character code representing the country or region.
+ * @param correctAnswer - Function that takes whether the answer was correct or incorrect.
+ * @returns A set of buttons with surrounding paragraphs and labels.
+ */
 const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }): React.JSX.Element => {
   const [questionResult, setQuestionResult] = useState(<></>);
 
-  const { data, loading, error } = useProcessedData(cca2);
+  const { data, loading, error } = useProcessedRegionData(cca2);
 
   const gradeAnswer = (answer: Continents): void => {
     if (data?.continents.includes(answer)) {

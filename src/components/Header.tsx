@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * A component showing the "Continent Quiz" title and the tag line.
+ * @returns A header and a paragraph.
+ */
 const Header: React.FC = (): React.JSX.Element => {
   return (
     <>

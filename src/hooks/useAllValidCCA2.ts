@@ -3,10 +3,14 @@ import axios from "axios";
 
 const URL: string = 'https://restcountries.com/v3.1/all?fields=cca2';
 
-export const useFetchAllCCA2 = () => {
-  const [cca2data, setData] = useState<Array<string> | null>(null);
-  const [cca2loading, setLoading] = useState<boolean>(true);
-  const [cca2error, setError] = useState<string | null>(null);
+/**
+ * Fetches all valid CCA2 codes from the REST Countries API after the component is first mounted.
+ * @returns `{ data, loading, error }` - `data` is an array of the codes.
+ */
+export const useAllValidCCA2 = () => {
+  const [data, setData] = useState<Array<string> | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,5 +27,5 @@ export const useFetchAllCCA2 = () => {
     fetchData();
   }, []); // Use [] so this only runs once
 
-  return { cca2data, cca2loading, cca2error };
+  return { data, loading, error };
 };

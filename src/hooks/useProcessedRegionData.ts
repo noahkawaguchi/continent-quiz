@@ -15,7 +15,15 @@ interface RegionInfo {
   continents: Array<string>,
 }
 
-export const useProcessedData = (cca2: string) => {
+/**
+ * Fetches common name, flag emoji, and continents data from the Rest Countries API 
+ * for the specified country or region when cca2 changes.
+ * @param cca2 - The two-character code representing the region.
+ * @returns 
+ *    - `{ data, loading, error }` 
+ *    - `data` contains `.commonName`, `.flagEmoji`, and `.continents`.
+ */
+export const useProcessedRegionData = (cca2: string) => {
   const [data, setData] = useState<RegionInfo | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

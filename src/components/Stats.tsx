@@ -7,6 +7,13 @@ interface StatsProps {
   gameOver: boolean,
 }
 
+/**
+ * Displays the player's stats and handles keeping the high score in local storage.
+ * @param score - The current score.
+ * @param lives - The number of remaining lives.
+ * @param gameOver - Whether the game is over.
+ * @returns Headings displaying score, lives, and high score.
+ */
 const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }): React.JSX.Element => {
   const [highScore, setHighScore] = useState(score);
 

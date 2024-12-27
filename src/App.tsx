@@ -4,19 +4,13 @@ import Header from './components/Header';
 import Question from './components/Question';
 import Stats from './components/Stats';
 import Endgame from './components/Endgame';
-import { useFetchAllCCA2 } from "./hooks/useFetchAllCCA2";
+import { useAllValidCCA2 } from "./hooks/useAllValidCCA2";
 import { Utils } from './utils/Utils';
 
 const App: React.FC = (): React.JSX.Element => {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(5);
   const [gameOver, setGameOver] = useState(false);
-
-  useEffect(() => {
-    if (lives <= 0) {
-      setGameOver(true);
-    }
-  }, [lives]);
 
   const correctAnswer = (correct: boolean) => {
     if (correct) {
@@ -25,6 +19,12 @@ const App: React.FC = (): React.JSX.Element => {
       setLives(prevLives => prevLives - 1);
     }
   };
+  
+  useEffect(() => {
+    if (lives <= 0) {
+      setGameOver(true);
+    }
+  }, [lives]);
 
   const newGame = () => {
     setScore(0);
@@ -33,10 +33,10 @@ const App: React.FC = (): React.JSX.Element => {
   };
   
   // Get all valid CCA2 codes with a one-time API call
-  const { cca2data, cca2loading, cca2error } = useFetchAllCCA2();
-  if (cca2loading) return <p>Loading...</p>;
-  if (cca2error) return <p>Error: {cca2error}</p>;
-  const randomCCA2: string = Utils.randomCCA2(cca2data!);
+  const { data, loading, error } = useAllValidCCA2();
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+  const randomCCA2: string = Utils.randomCCA2(data!);
 
   return (
     <>
