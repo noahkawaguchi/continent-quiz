@@ -28,7 +28,7 @@ const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }) => {
       correctAnswer(true);
       return;
     }
-    setQuestionResult(`Incorrect. Correct answers include: ${data?.continents}.`)
+    setQuestionResult(`Incorrect. Correct answers for ${data?.commonName} include: ${data?.continents}.`)
     correctAnswer(false);
   }
 
@@ -37,18 +37,23 @@ const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }) => {
 
   return (
     <div className="question">
-      <p>Where is...</p>
-      <h3>{data?.commonName} {data?.flagEmoji}</h3>
-      <div className="buttons">
-        <button onClick={() => gradeAnswer(Continents.Africa)}>Africa</button>
-        <button onClick={() => gradeAnswer(Continents.Antarctica)}>Antarctica</button>
-        <button onClick={() => gradeAnswer(Continents.Asia)}>Asia</button>
-        <button onClick={() => gradeAnswer(Continents.Europe)}>Europe</button>
-        <button onClick={() => gradeAnswer(Continents.North_America)}>North America/Caribbean</button>
-        <button onClick={() => gradeAnswer(Continents.Oceania)}>Australia/Oceania</button>
-        <button onClick={() => gradeAnswer(Continents.South_America)}>South America</button>
+      <p>Where is... <strong>{data?.commonName}</strong> {data?.flagEmoji}</p>
+      <div className="buttons-and-result">
+        <div className="buttons-outer">
+          <div className="buttons-inner">
+            <button onClick={() => gradeAnswer(Continents.Africa)}>Africa</button>
+            <button onClick={() => gradeAnswer(Continents.Antarctica)}>Antarctica</button>
+            <button onClick={() => gradeAnswer(Continents.Asia)}>Asia</button>
+            <button onClick={() => gradeAnswer(Continents.Europe)}>Europe</button>
+            <button onClick={() => gradeAnswer(Continents.North_America)}>
+              North America <i>(including Central<br/>America and the Caribbean)</i>
+            </button>
+            <button onClick={() => gradeAnswer(Continents.Oceania)}>Oceania</button>
+            <button onClick={() => gradeAnswer(Continents.South_America)}>South America</button>
+          </div>
+        </div>
+        <p>{questionResult}</p>
       </div>
-      <p>{questionResult}</p>
       {/* <pre style={{textAlign: 'left'}}>{JSON.stringify(data, null, 2)}</pre> */}
     </div>
   );  

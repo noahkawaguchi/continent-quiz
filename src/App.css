@@ -7,19 +7,39 @@ main > * {
   margin: auto;
 }
 
-.question {
-  margin: auto;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-}
-
 button {
   background-color: darkslategray;
   color: var(--light-text);
-  padding: 6px;
-  margin: 3px 1px;
+  padding: 7px;
+  margin: 3px;
   font-size: 1rem;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.question > * {
+  margin: auto;
+}
+
+.buttons-and-result {
+  width: min-content;
+}
+
+.buttons-outer {
+  display: flex;
+  width: max-content;
+}
+
+.buttons-inner {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto auto;
+}
+
+.endgame {
+  margin-bottom: 20px;
 }

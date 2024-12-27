@@ -6,7 +6,7 @@ interface EndgameProps {
 
 const Endgame: React.FC<EndgameProps> = ({newGame}) => {
   return (
-    <div>
+    <div className="endgame">
       <h2>Game Over</h2>
       <button onClick={() => newGame()}>Play Again?</button>
     </div>
