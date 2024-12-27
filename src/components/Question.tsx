@@ -41,17 +41,20 @@ const Question: React.FC<QuestionProps> = ({ cca2, correctAnswer }) => {
       <div className="buttons-and-result">
         <div className="buttons-outer">
           <div className="buttons-inner">
-            <button onClick={() => gradeAnswer(Continents.Africa)}>Africa</button>
+            <button id="NAButton" onClick={() => gradeAnswer(Continents.North_America)}>North<br/>America*</button>
+            <button onClick={() => gradeAnswer(Continents.South_America)}>South<br/>America</button>
             <button onClick={() => gradeAnswer(Continents.Antarctica)}>Antarctica</button>
-            <button onClick={() => gradeAnswer(Continents.Asia)}>Asia</button>
+          </div>
+          <div className="buttons-inner">
             <button onClick={() => gradeAnswer(Continents.Europe)}>Europe</button>
-            <button onClick={() => gradeAnswer(Continents.North_America)}>
-              North America <i>(including Central<br/>America and the Caribbean)</i>
-            </button>
+            <button onClick={() => gradeAnswer(Continents.Africa)}>Africa</button>
+            <button onClick={() => gradeAnswer(Continents.Asia)}>Asia</button>
             <button onClick={() => gradeAnswer(Continents.Oceania)}>Oceania</button>
-            <button onClick={() => gradeAnswer(Continents.South_America)}>South America</button>
           </div>
         </div>
+        <label htmlFor="NAButton" className="footnote">
+          *including Central America and the Caribbean
+        </label>
         <p>{questionResult}</p>
       </div>
       {/* <pre style={{textAlign: 'left'}}>{JSON.stringify(data, null, 2)}</pre> */}
