@@ -7,7 +7,11 @@ const config: Config = {
     '^.+\\.css$': 'identity-obj-proxy', // Mock CSS modules
     '^@/(.*)$': '<rootDir>/src/$1', // Alias `@` to `src/`
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'], // Add setup files
+  setupFiles: ['jest-localstorage-mock'],
+  setupFilesAfterEnv: [
+    '<rootDir>/jest.setup.ts',
+    '@testing-library/jest-dom'
+  ], // Add setup files
 };
 
 export default config;

@@ -40,7 +40,10 @@ const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }): React.JSX.Elem
   
   return (
     <>
-      <h4>Score: {score} {!gameOver && `| Lives: ${lives}`}</h4>
+      <h4>
+        <span aria-label="score">Score: {score} </span>
+        <span>{!gameOver && `| Lives: ${lives}`}</span>
+      </h4>
       <h4>High Score: {highScore}</h4>
     </>
   );
