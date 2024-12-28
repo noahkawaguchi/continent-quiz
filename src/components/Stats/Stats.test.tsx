@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import Stats from "./Stats";
 
@@ -44,6 +44,15 @@ describe('Stats', () => {
     expect(highScoreText).toHaveTextContent('High Score: 7');
   });
 
-  
+  it('should find the highest score when the score changes multiple times', () => {
+    getItemSpy.mockImplementation(key => key === 'storedHighScore' ? '2' : null);
+    const { rerender } = render(<Stats score={3} lives={3} gameOver={false} />);
+    rerender(<Stats score={5} lives={2} gameOver={false} />);
+    rerender(<Stats score={1} lives={5} gameOver={false} />);
+    rerender(<Stats score={10} lives={4} gameOver={false} />);
+    const highScoreText: HTMLHeadingElement = screen.getByText(/High Score:/);
+    expect(setItemSpy).toHaveBeenCalledWith('storedHighScore', '10');
+    expect(highScoreText).toHaveTextContent('High Score: 10');
+  });
 
 });

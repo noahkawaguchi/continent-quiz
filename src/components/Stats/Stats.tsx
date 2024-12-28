@@ -29,7 +29,6 @@ const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }): React.JSX.Elem
   // Update the high score in the UI and in local storage if 
   // the user's score is higher than the stored number.
   useEffect(() => {
-    console.log('checking for highScore update!');
     if (score > highScore) {
       setHighScore(score);
       localStorage.setItem('storedHighScore', score.toString());

@@ -12,7 +12,7 @@ const App: React.FC = (): React.JSX.Element => {
   const [lives, setLives] = useState(5);
   const [gameOver, setGameOver] = useState(false);
 
-  const correctAnswer = (correct: boolean) => {
+  const isAnswerCorrect = (correct: boolean) => {
     if (correct) {
       setScore(prevScore => prevScore + 1);
     } else {
@@ -42,7 +42,7 @@ const App: React.FC = (): React.JSX.Element => {
     <>
       <header><Header /></header>
       <main>
-        {!gameOver && <Question cca2={randomCCA2} correctAnswer={correctAnswer} />}
+        {!gameOver && <Question cca2={randomCCA2} isAnswerCorrect={isAnswerCorrect} />}
         {gameOver && <Endgame newGame={newGame} />}
         <Stats score={score} lives={lives} gameOver={gameOver} />
       </main>
