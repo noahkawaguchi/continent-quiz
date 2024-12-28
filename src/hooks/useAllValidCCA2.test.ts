@@ -43,7 +43,7 @@ describe('useAllValidCCA2', () => {
     jest.useRealTimers();
   });
 
-  it('should return an error when the API call fails', async () => {
+  it('should return the error if the API call fails', async () => {
     const mockError = new Error('This is a mock error.');
     mockedAxios.get.mockRejectedValue(mockError);
     const { result } = renderHook(() => useAllValidCCA2());
