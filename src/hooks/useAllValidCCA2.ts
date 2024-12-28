@@ -10,7 +10,7 @@ const URL: string = 'https://restcountries.com/v3.1/all?fields=cca2';
 export const useAllValidCCA2 = () => {
   const [data, setData] = useState<Array<string> | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +19,7 @@ export const useAllValidCCA2 = () => {
         const processedData = Object.values(rawData.data).map((item: any) => item.cca2);
         setData(processedData);
       } catch (err: any) {
-        setError(err instanceof Error ? err.message : "Unknown error");
+        setError(err instanceof Error ? err : new Error('Unknown error'));
       } finally {
         setLoading(false);
       }

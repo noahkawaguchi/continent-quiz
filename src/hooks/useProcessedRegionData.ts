@@ -26,7 +26,7 @@ interface RegionInfo {
 export const useProcessedRegionData = (cca2: string) => {
   const [data, setData] = useState<RegionInfo | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchAndProcessData = async () => {
@@ -39,7 +39,7 @@ export const useProcessedRegionData = (cca2: string) => {
         }))[0];
         setData(processedData);
       } catch (err: any) {
-        setError(err instanceof Error ? err.message : "Unknown error");
+        setError(err instanceof Error ? err : new Error('Unknown error'));
       } finally {
         setLoading(false);
       }

@@ -35,7 +35,7 @@ const App: React.FC = (): React.JSX.Element => {
   // Get all valid CCA2 codes with a one-time API call
   const { data, loading, error } = useAllValidCCA2();
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (error) return <p>Error: {error.message}</p>;
   const randomCCA2: string = Utils.randomCCA2(data!);
 
   return (

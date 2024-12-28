@@ -43,7 +43,7 @@ const Question: React.FC<QuestionProps> = ({ cca2, isAnswerCorrect }): React.JSX
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div className="question">
