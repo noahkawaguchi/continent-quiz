@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Stats from "./Stats";
+import Stats from './Stats';
 
 describe('Stats', () => {
   beforeEach(() => localStorage.clear());
@@ -44,5 +44,4 @@ describe('Stats', () => {
     expect(localStorage.setItem).toHaveBeenCalledWith('storedHighScore', '10');
     expect(highScoreText).toHaveTextContent('High Score: 10');
   });
-
 });

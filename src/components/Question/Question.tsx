@@ -1,10 +1,10 @@
-import React from "react";
-import { useState } from "react";
-import { useProcessedRegionData } from "../../hooks/useProcessedRegionData";
+import React from 'react';
+import { useState } from 'react';
+import { useProcessedRegionData } from '../../hooks/useProcessedRegionData';
 
 interface QuestionProps {
-  cca2: string,
-  isAnswerCorrect: Function
+  cca2: string;
+  isAnswerCorrect: (correct: boolean) => void;
 }
 
 enum Continents {
@@ -30,12 +30,12 @@ const Question: React.FC<QuestionProps> = ({ cca2, isAnswerCorrect }): React.JSX
 
   const gradeAnswer = (answer: Continents): void => {
     if (data?.continents.includes(answer)) {
-      setQuestionResult(<span style={{color: "limegreen"}}>Correct!</span>);
+      setQuestionResult(<span style={{ color: 'limegreen' }}>Correct!</span>);
       isAnswerCorrect(true);
       return;
     }
     setQuestionResult(
-      <span style={{color: "crimson"}}>
+      <span style={{ color: 'crimson' }}>
         Incorrect. Correct answers for {data?.commonName} include: {data?.continents}.
       </span>
     );
@@ -46,33 +46,39 @@ const Question: React.FC<QuestionProps> = ({ cca2, isAnswerCorrect }): React.JSX
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="question">
-      <p>Where is... <strong>{data?.commonName}</strong> {data?.flagEmoji}</p>
-      <div className="buttons-and-result">
-        <div className="buttons-outer">
-          <div className="buttons-inner">
-            <button id="NAButton" onClick={() => gradeAnswer(Continents.North_America)}>
-              North<br/>America*
+    <div className='question'>
+      <p>
+        Where is... <strong>{data?.commonName}</strong> {data?.flagEmoji}
+      </p>
+      <div className='buttons-and-result'>
+        <div className='buttons-outer'>
+          <div className='buttons-inner'>
+            <button id='NAButton' onClick={() => gradeAnswer(Continents.North_America)}>
+              North
+              <br />
+              America*
             </button>
             <button onClick={() => gradeAnswer(Continents.South_America)}>
-              South<br/>America
+              South
+              <br />
+              America
             </button>
             <button onClick={() => gradeAnswer(Continents.Antarctica)}>Antarctica</button>
           </div>
-          <div className="buttons-inner">
+          <div className='buttons-inner'>
             <button onClick={() => gradeAnswer(Continents.Europe)}>Europe</button>
             <button onClick={() => gradeAnswer(Continents.Asia)}>Asia</button>
             <button onClick={() => gradeAnswer(Continents.Africa)}>Africa</button>
             <button onClick={() => gradeAnswer(Continents.Oceania)}>Oceania</button>
           </div>
         </div>
-        <label htmlFor="NAButton" className="footnote">
+        <label htmlFor='NAButton' className='footnote'>
           *including Central America and the Caribbean
         </label>
         <p>{questionResult}</p>
       </div>
     </div>
-  );  
+  );
 };
 
 export default Question;

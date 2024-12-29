@@ -1,10 +1,10 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React from 'react';
+import { useState, useEffect } from 'react';
 
 interface StatsProps {
-  score: number,
-  lives: number,
-  gameOver: boolean,
+  score: number;
+  lives: number;
+  gameOver: boolean;
 }
 
 /**
@@ -20,13 +20,12 @@ const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }): React.JSX.Elem
   // Load any previous high score from local storage once when the component mounts
   useEffect(() => {
     const storedString = localStorage.getItem('storedHighScore');
-    const storedNumber = storedString && !isNaN(Number(storedString))
-                           ? parseInt(storedString)
-                           : score;
+    const storedNumber =
+      storedString && !isNaN(Number(storedString)) ? parseInt(storedString) : score;
     setHighScore(storedNumber);
   }, []);
 
-  // Update the high score in the UI and in local storage if 
+  // Update the high score in the UI and in local storage if
   // the user's score is higher than the stored number.
   useEffect(() => {
     if (score > highScore) {
@@ -34,19 +33,22 @@ const Stats: React.FC<StatsProps> = ({ score, lives, gameOver }): React.JSX.Elem
       localStorage.setItem('storedHighScore', score.toString());
     }
   }, [score, highScore]);
-  // Listening for highScore here causes double checks but is necessary so the 
+  // Listening for highScore here causes double checks but is necessary so the
   // component will update local storage when it renders if necessary.
 
-  
   return (
     <>
-      <p><strong>
-        <span aria-label="score">Score: {score} </span>
-        <span>{!gameOver && `| Lives: ${lives}`}</span>
-      </strong></p>
-      <p><strong>High Score: {highScore}</strong></p>
+      <p>
+        <strong>
+          <span aria-label='score'>Score: {score} </span>
+          <span>{!gameOver && `| Lives: ${lives}`}</span>
+        </strong>
+      </p>
+      <p>
+        <strong>High Score: {highScore}</strong>
+      </p>
     </>
   );
 };
 
-export default Stats
+export default Stats;
