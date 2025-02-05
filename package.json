@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "node --no-deprecation ./node_modules/.bin/jest --verbose",
+    "test": "node --no-deprecation ./node_modules/jest/bin/jest.js --verbose",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
